@@ -21,7 +21,6 @@ export interface FluidGlassProps extends React.HTMLAttributes<HTMLDivElement> {
   elasticity?: number;
 }
 
-// Memoized SVG Filter Component
 const SvgFilterComponent = React.memo(
   ({
     id,
@@ -87,7 +86,6 @@ export const FluidGlass = React.memo(
     elasticity = 8,
     ...restProps
   }: PropsWithChildren<FluidGlassProps>) => {
-    // Memoize constants
     const shineFilter = useMemo(() => "hue-rotate(20deg)", []);
     const shineShadow = useMemo(
       () => "inset 1px 1px 1px #ffffff28, inset -1px -1px 0px #ffffff15",
@@ -95,7 +93,6 @@ export const FluidGlass = React.memo(
     );
     const baseFrequency = useMemo(() => "0.004 0.004", []);
 
-    // Memoize outer style
     const outerStyle = useMemo<CSSProperties>(
       () => ({
         borderRadius,
@@ -104,7 +101,6 @@ export const FluidGlass = React.memo(
       [borderRadius]
     );
 
-    // Memoize component style
     const componentStyle = useMemo<CSSProperties>(
       () =>
         ({
@@ -122,7 +118,6 @@ export const FluidGlass = React.memo(
       [borderRadius, tintColor, shineFilter, style, padding]
     );
 
-    // Memoize content style
     const contentStyle = useMemo<CSSProperties>(
       () => ({
         position: "relative",
@@ -131,7 +126,6 @@ export const FluidGlass = React.memo(
       []
     );
 
-    // Memoize layer base style
     const layerBaseStyle = useMemo<CSSProperties>(
       () => ({
         position: "absolute",
@@ -141,7 +135,6 @@ export const FluidGlass = React.memo(
       [borderRadius]
     );
 
-    // Memoize effect layer style
     const effectLayerStyle = useMemo<CSSProperties>(
       () => ({
         ...layerBaseStyle,
@@ -154,7 +147,6 @@ export const FluidGlass = React.memo(
       [layerBaseStyle, blurAmount, saturation, id]
     );
 
-    // Memoize tint layer style
     const tintLayerStyle = useMemo<CSSProperties>(
       () => ({
         ...layerBaseStyle,
@@ -164,7 +156,6 @@ export const FluidGlass = React.memo(
       [layerBaseStyle, tintColor]
     );
 
-    // Memoize shine layer style
     const shineLayerStyle = useMemo<CSSProperties>(
       () => ({
         ...layerBaseStyle,
@@ -204,7 +195,6 @@ export const FluidGlass = React.memo(
     );
   },
   (prevProps, nextProps) => {
-    // Custom comparison: return true if props are equal (prevents re-render)
     return (
       prevProps.id === nextProps.id &&
       prevProps.padding === nextProps.padding &&
@@ -216,7 +206,6 @@ export const FluidGlass = React.memo(
       prevProps.elasticity === nextProps.elasticity &&
       prevProps.className === nextProps.className &&
       prevProps.children === nextProps.children &&
-      // Compare style objects (shallow comparison)
       JSON.stringify(prevProps.style) === JSON.stringify(nextProps.style)
     );
   }
