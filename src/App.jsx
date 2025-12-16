@@ -11,7 +11,7 @@ function App() {
       <SectionTwo />
 
       {/* github */}
-      <div className="fixed top-4 md:bottom-4 md:top-0 right-4 ">
+      <div className="fixed top-4 md:top-auto md:bottom-4 right-4">
         <FluidGlass
           padding="20px"
           borderRadius={99}
